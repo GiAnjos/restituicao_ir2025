@@ -156,4 +156,14 @@ WHERE m.data_operacao_titulo_publico >= DATE '2025-07-02'
 --perfil
 --FROM conv
 --GROUP BY 2
+
+-- novos investidores incentivo
+--SELECT
+--COUNT (DISTINCT cpf) total_cpf,
+--SUM (val_total_negociado) valor,
+--conv.incentivo
+--FROM conv 
+--LEFT JOIN cte1 ON conv.cpf = num_documento_identificacao
+--WHERE num_documento_identificacao IS NULL
+--GROUP BY 3
  
