@@ -39,9 +39,15 @@ SELECT
 LPAD(m.num_documento_identificacao,11, '0') cpf,
 gc.flagagencia,
 gc.lote,
+m.cod_agente_custodia corretora,
+d.nome_completo_razao_social, 
+CASE WHEN i.nr_cnpj IS NULL THEN 'Não recebeu incentivo' ELSE 'Recebeu incentivo' END AS incentivo,
+m.desc_tipo_titulo_publico titulo_publico,
 m.val_total_negociado
 FROM movimentacao_recente_dremio m
 INNER JOIN gc ON gc.cpf = LPAD(m.num_documento_identificacao,11, '0')
+LEFT JOIN depara_corretoras d ON m.cod_agente_custodia = d.cod_operacional_participante
+LEFT JOIN corretoras_incentivo i ON m.cod_agente_custodia = i.nr_cnpj
 WHERE m.data_operacao_titulo_publico >= DATE '2025-07-02' 
 ),
 
@@ -51,11 +57,18 @@ LPAD(m.num_documento_identificacao,11, '0') cpf,
 imp.flagagencia,
 imp.lote,
 imp.perfil,
+m.cod_agente_custodia corretora,
+d.nome_completo_razao_social, 
+CASE WHEN i.nr_cnpj IS NULL THEN 'Não recebeu incentivo' ELSE 'Recebeu incentivo' END AS incentivo,
+m.desc_tipo_titulo_publico titulo_publico,
 m.val_total_negociado
 FROM movimentacao_recente_dremio m
 INNER JOIN imp ON imp.cpf = LPAD(m.num_documento_identificacao,11, '0')
+LEFT JOIN depara_corretoras d ON m.cod_agente_custodia = d.cod_operacional_participante
+LEFT JOIN corretoras_incentivo i ON m.cod_agente_custodia = i.nr_cnpj
 WHERE m.data_operacao_titulo_publico >= DATE '2025-07-02' 
 )
+
 
 --utilize a analise de acordo com a necessidade
 
