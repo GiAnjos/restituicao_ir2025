@@ -166,4 +166,13 @@ WHERE m.data_operacao_titulo_publico >= DATE '2025-07-02'
 --LEFT JOIN cte1 ON conv.cpf = num_documento_identificacao
 --WHERE num_documento_identificacao IS NULL
 --GROUP BY 3
+
+- Ticket medio incentivo
+-- SELECT
+-- SUM (val_total_negociado)/COUNT (DISTINCT cpf) ticket_medio,
+-- conv.incentivo
+-- FROM conv 
+-- LEFT JOIN cte1 ON conv.cpf = num_documento_identificacao
+-- WHERE num_documento_identificacao IS NULL
+-- GROUP BY 2
  
