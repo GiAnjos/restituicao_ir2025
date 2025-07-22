@@ -167,7 +167,7 @@ WHERE m.data_operacao_titulo_publico >= DATE '2025-07-02'
 --WHERE num_documento_identificacao IS NULL
 --GROUP BY 3
 
-- Ticket medio incentivo
+- Ticket medio incentivo - novos investidores
 -- SELECT
 -- SUM (val_total_negociado)/COUNT (DISTINCT cpf) ticket_medio,
 -- conv.incentivo
@@ -176,7 +176,7 @@ WHERE m.data_operacao_titulo_publico >= DATE '2025-07-02'
 -- WHERE num_documento_identificacao IS NULL
 -- GROUP BY 2
 
---titulos investidos incentivo
+--titulos investidos incentivo - novos investidores
 -- SELECT
 -- COUNT (DISTINCT cpf) total_cpfs,
 -- SUM (val_total_negociado) valor,
@@ -187,4 +187,31 @@ WHERE m.data_operacao_titulo_publico >= DATE '2025-07-02'
 -- WHERE num_documento_identificacao IS NULL
 -- GROUP BY 3,4
 -- ORDER BY 3,1 DESC, 2 DESC
- 
+
+--titulos investidos incentivo - investidores ativos
+-- SELECT
+-- COUNT (DISTINCT cpf) total_cpfs,
+-- SUM (val_total_negociado) valor,
+-- conv.incentivo,
+-- conv.titulo_publico
+-- FROM conv 
+-- INNER JOIN cte1 ON conv.cpf = num_documento_identificacao
+-- GROUP BY 3,4
+-- ORDER BY 3,1 DESC, 2 DESC
+
+-- Ticket medio incentivo - investidores ativos
+--SELECT
+--SUM (val_total_negociado)/COUNT (DISTINCT cpf) ticket_medio,
+--conv.incentivo
+--FROM conv 
+--INNER JOIN cte1 ON conv.cpf = num_documento_identificacao
+--GROUP BY 2
+
+-- investidores ativos incentivo
+--SELECT
+--COUNT (DISTINCT cpf) total_cpf,
+--SUM (val_total_negociado) valor,
+--conv.incentivo
+--FROM conv 
+--INNER JOIN cte1 ON conv.cpf = num_documento_identificacao
+--GROUP BY 3
